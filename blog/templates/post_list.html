@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+            border-bottom: 3px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+        .post {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .post-title {
+            color: #4CAF50;
+            margin-top: 0;
+        }
+        .post-content {
+            color: #555;
+            line-height: 1.6;
+        }
+        .post-date {
+            color: #888;
+            font-size: 0.9em;
+            font-style: italic;
+        }
+        .no-posts {
+            text-align: center;
+            color: #888;
+            padding: 40px;
+        }
+    </style>
+</head>
+<body>
+    <h1>📝 My Blog Posts</h1>
+    
+    {% if all_posts %}
+        {% for post in all_posts %}
+        <div class="post">
+            <h2 class="post-title">{{ post.title }}</h2>
+            <p class="post-content">{{ post.content }}</p>
+            <p class="post-date">Posted on: {{ post.created_at|date:"F d, Y - H:i" }}</p>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="no-posts">
+            <p>No posts yet. Add some posts in the admin panel!</p>
+        </div>
+    {% endif %}
+</body>
+</html>
